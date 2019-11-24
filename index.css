@@ -92,33 +92,57 @@ header > .btn {
 }
 
 /* RECIPES */
-.recipes {
+.recipe-box {
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+.recipe {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  perspective: 300px;
 }
 
-.recipes img {
+.recipe-inner {
+  position: absolute;
   width: 100%;
-  height: auto;
-}
-.recipes figcaption {
-  border: 2px solid rgb(187, 180, 180);
+  height: 100%;
   text-align: center;
-  display: grid;
-  grid-template-columns: 1fr;
+  transition: all 0.8s ease-in-out;
+  transform-style: preserve-3d;
 }
-.recipes a {
-  text-decoration: none;
-  color: black;
+
+.rotating {
+  transform: rotateY(180deg);
 }
-.recipes h4 {
-  font-size: 1.6rem;
+
+.recipe-front,
+.recipe-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
 }
-.recipes p {
-  font-size: 1.4rem;
+
+.recipe-back {
+  transform: rotateY(180deg);
 }
-.recipes figure {
-  margin-top: 20px;
+
+.recipe-back-text {
+  transition: transform 0.6s ease-in-out;
+  height: auto;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.recipe p {
+  background: #eaf5f3;
+}
+
+.recipe-box img {
+  width: 100%;
+  height: 100%;
 }
 
 /* AUTHOR */
@@ -131,6 +155,9 @@ header > .btn {
   width: 75%;
   justify-self: center;
   margin-top: 10px;
+}
+#always-visible-line {
+  width: 100%;
 }
 .author-img {
   background-image: url("./images/chef-holding-white-tea-cup-887827.jpg");
@@ -187,6 +214,7 @@ footer p {
   margin: 5px;
   font-size: 1.2rem;
 }
+
 @media screen and (min-width: 768px) {
   .navbar {
     display: flex;

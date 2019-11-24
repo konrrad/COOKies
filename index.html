@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -36,63 +35,109 @@
         <a href="#" class="btn">SHOW ME</a>
       </header>
       <hr class="line" id="welcome-line" />
-      <section class="recipes" id="freerecip">
-        <a href="#">
-          <figure>
-            <div>
-              <img
-                src="./images/cooked-food-served-on-white-ceramic-bowl-949067.jpg"
-                alt=""
-              />
-            </div>
-            <figcaption>
-              <h4>Oatmeal</h4>
-              <p>
-                Oatmeal in the morning - the best breakfat one can imagine.
-                Check it out and see for yourself.
-              </p>
-            </figcaption>
-          </figure>
-        </a>
-        <hr class="line" />
-        <a href="#">
-          <figure>
-            <div>
-              <img
-                src="./images/appetizer-avocado-bread-breakfast-566566.jpg"
-                alt=""
-              />
-            </div>
-            <figcaption>
-              <h4>Avocado Bread</h4>
-              <p>
-                "This is a great old Maine recipe, moist and spicy. The bread
-                actually tastes even better the day after it is baked.
-              </p>
-            </figcaption>
-          </figure>
-        </a>
-        <hr class="line" />
-        <a href="#">
-          <figure>
-            <div>
-              <img
-                src="./images/plate-of-cooked-meat-with-cooked-vegetable-2116094.jpg"
-                alt=""
-              />
-            </div>
-            <figcaption>
-              <h4>Mr Chicken</h4>
-              <p>
-                Feed a crowd with ease with these amazing chicken. Light, best
-                for dinner. Delicious.
-              </p>
-            </figcaption>
-          </figure>
-        </a>
-      </section>
+      <div>
+        <div class="recipe-box" id="freerecip">
+          <section
+            class="recipe up"
+            id="0"
+            onclick="changeVisibilityRecipe(this.id)"
+          >
+            <figure class="recipe-inner">
+              <div class="recipe-front">
+                <img
+                  src="./images/blueberry-bowl-breakfast-cereal-216951.jpg"
+                  alt=""
+                />
+              </div>
 
+              <div class="recipe-back">
+                <img
+                  src="./images/red-strawberry-and-raspberry-on-white-ceramic-bowl-128865.jpg"
+                  alt=""
+                />
+                <div class="recipe-back-text">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Maiores amet praesentium delectus neque aliquid similique
+                    suscipit hic, assumenda voluptas necessitatibus voluptate
+                    dolores impedit aspernatur vel nostrum tempore, quaerat
+                    officiis deserunt! Molestias aperiam reprehenderit delectus.
+                    Nemo, sed! Illum quidem corrupti cupiditate deserunt magni
+                    exercitationem earum at iste atque nihil doloremque,
+                    expedita officia, sint est itaque iusto repellendus error
+                    consequatur aliquid eligendi, doloribus dolores dolorem
+                    enim? Temporibus officiis hic, et esse atque, eaque eius,
+                    fugit commodi recusandae ad vel omnis mollitia molestiae
+                    necessitatibus! Porro dicta dolorum cum unde explicabo optio
+                    debitis neque, reiciendis soluta facere quisquam dolores aut
+                    quae rerum sint expedita.
+                  </p>
+                </div>
+              </div>
+            </figure>
+          </section>
+          <hr class="line" />
+          <section
+            class="recipe"
+            id="1"
+            onclick="changeVisibilityRecipe(this.id)"
+          >
+            <figure class="recipe-inner">
+              <div class="recipe-front">
+                <img
+                  src="./images/plate-of-cooked-meat-with-cooked-vegetable-2116094.jpg"
+                  alt=""
+                />
+              </div>
+
+              <div class="recipe-back">
+                <img
+                  src="./images/appetizer-avocado-bread-breakfast-566566.jpg"
+                  alt=""
+                />
+                <div class="recipe-back-text">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
+                    labore esse, harum similique tempore totam officiis
+                    consectetur sint assumenda quisquam.
+                  </p>
+                </div>
+              </div>
+            </figure>
+          </section>
+          <hr class="line" />
+          <section
+            class="recipe"
+            id="3"
+            onclick="changeVisibilityRecipe(this.id)"
+          >
+            <figure class="recipe-inner">
+              <div class="recipe-front">
+                <img
+                  src="./images/close-up-photo-of-burger-1639562.jpg"
+                  alt=""
+                />
+              </div>
+
+              <div class="recipe-back">
+                <img
+                  src="./images/food-dinner-lunch-unhealthy-70497.jpg"
+                  alt=""
+                />
+                <div class="recipe-back-text">
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Molestiae repellendus id asperiores nostrum dolores ea
+                    corporis nemo deleniti labore fuga!
+                  </p>
+                </div>
+              </div>
+            </figure>
+          </section>
+        </div>
+      </div>
       <!-- AUTHOR -->
+
       <hr class="line" id="always-visible-line" />
       <section class="author" id="about">
         <div class="author-img"></div>
@@ -104,6 +149,7 @@
           voluptate atque!
         </div>
       </section>
+      <!-- FORM -->
 
       <!-- SOCIAL -->
       <hr class="line" id="always-visible-line" />
