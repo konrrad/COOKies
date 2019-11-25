@@ -108,7 +108,7 @@
           <hr class="line" />
           <section
             class="recipe"
-            id="3"
+            id="2"
             onclick="changeVisibilityRecipe(this.id)"
           >
             <figure class="recipe-inner">
@@ -135,7 +135,7 @@
             </figure>
           </section>
         </div>
-      </div>
+      
       <!-- AUTHOR -->
 
       <hr class="line" id="always-visible-line" />
@@ -149,8 +149,48 @@
           voluptate atque!
         </div>
       </section>
+      <hr class="line" />
       <!-- FORM -->
+      <section class="form-container" id="addRecipie">
+        <h4 class="form-container-heading">Add Your Recipe</h4>
+        <form id="addForm">
+          <input
+            type="text"
+            id="rname"
+            name="recipieName"
+            placeholder="Title"
+            class="form-input form-title"
+            maxlength="15"
+          />
 
+          <input
+            type="textarea"
+            id="rdescription"
+            name="recipieDescription"
+            placeholder="Short Description"
+            class="form-input form-desc"
+            maxlength="30"
+          />
+
+          <input
+            type="file"
+            id="rphoto0"
+            name="recipiePhoto"
+            placeholder="Recipie photo.."
+            class="form-input btn"
+            accept=".png,.jpg"
+          />
+          <input
+            type="file"
+            id="rphoto1"
+            name="recipiePhoto"
+            placeholder="Recipie photo.."
+            class="form-input btn"
+            accept=".png,.jpg"
+          />
+          <button class="content-button btn" type="submit">Add</button>
+        </form>
+      </section>
       <!-- SOCIAL -->
       <hr class="line" id="always-visible-line" />
 

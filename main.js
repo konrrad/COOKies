@@ -22,6 +22,7 @@ function closeRecipes() {
 }
 
 function changeVisibilityRecipe(clickedID) {
+  console.log(clickedID);
   giveZIndex(clickedID);
   // funkcja ukrywajaca lub odkrywajaca przepis w zaleznosci od stanu
   var rotateBox = document
@@ -60,4 +61,70 @@ function hideTextWindow(rotateBox, textBox) {
 function giveZIndex(id) {
   const index = 999 - id;
   document.getElementById(id).style.zIndex = index;
+}
+
+const addForm = document.forms["addForm"];
+addedId = 3;
+
+addForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+  //loading values
+  const descVal = document.getElementById("rdescription").value;
+  //create elements
+  const section = document.createElement("section");
+  section.classList.add("recipe");
+  section.id = addedId;
+
+  const figure = document.createElement("figure");
+  figure.classList.add("recipe-inner");
+
+  const recfront = document.createElement("div");
+  recfront.classList.add("recipe-front");
+  const img1 = document.createElement("img");
+  img1.src = window.URL.createObjectURL(
+    document.getElementById("rphoto0").files[0]
+  );
+  recfront.appendChild(img1);
+
+  const recback = document.createElement("div");
+  recback.classList.add("recipe-back");
+  const img2 = document.createElement("img");
+  img2.src = window.URL.createObjectURL(
+    document.getElementById("rphoto1").files[0]
+  );
+  recback.appendChild(img2);
+
+  const recbacktxt = document.createElement("div");
+  recbacktxt.classList.add("recipe-back-text");
+  const desc = document.createElement("p");
+  desc.textContent = descVal;
+  recbacktxt.appendChild(desc);
+  recback.appendChild(recbacktxt);
+
+  const del = document.createElement("button");
+
+  delete button;
+  del.textContent = "Delete";
+  del.classList.add("delete-button");
+  section.appendChild(del);
+  figure.appendChild(recfront);
+  figure.appendChild(recback);
+  section.appendChild(figure);
+  del.addEventListener("click", function() {
+    document.getElementById("freerecip").removeChild(section);
+  });
+  //appending
+  document.getElementById("freerecip").appendChild(section);
+  //tutej
+  section.onclick = changeVisibilityRecipe(addedId);
+
+  clearInput(document.getElementsByTagName("input"));
+  //section.addEventListener("click", changeVisibilityRecipe(this.id));
+  addedId++;
+});
+
+function clearInput(elements) {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].value = "";
+  }
 }
