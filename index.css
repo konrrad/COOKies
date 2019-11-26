@@ -138,6 +138,7 @@ header > .btn {
 
 .recipe p {
   background: #eaf5f3;
+  word-wrap: break-word;
 }
 
 .recipe-box img {
@@ -292,7 +293,7 @@ footer p {
   #always-visible-line {
     margin-top: 50px;
     display: block;
-    width: 80%;
+    width: 100%;
   }
   .social {
     grid-template-columns: repeat(3, 1fr);

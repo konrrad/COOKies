@@ -5,26 +5,36 @@ navBarToggle.addEventListener("click", function() {
   mainNav.classList.toggle("active");
 });
 
-function closeRecipes() {
-  // funkcja chowajaca wszystkie przepisy (zdjecia i teksty)
-  var recipes = document.getElementsByClassName("recipe"); // wyciagam przepisy (klasa recipe)
-
-  var recipe;
-  for (recipe of recipes) {
-    // iteruje po przepisach
-    var rotateBox = recipe.getElementsByClassName("recipe-inner")[0]; // sciagam box
-    var textBox = rotateBox
-      .getElementsByClassName("recipe-back")[0]
-      .getElementsByClassName("recipe-back-text")[0]; // sciagam okno tekstowe
-    rotateBox.classList.toggle("rotating", false); // forsuje odwrocenie zdjecia
-    hideTextWindow(rotateBox, textBox); // chowam okno tekstowe
-  }
+function closeLastRecipe() {
+  // funkcja chowajaca ostatni otwierany przepis (zdjecia i teksty)
+  var thisRecipe = document.getElementById(openedRecipeID);
+  var lastRotateBox = document
+    .getElementById(openedRecipeID)
+    .getElementsByClassName("recipe-inner")[0]; // sciagam ostatniego boxa
+  var lastTextBox = lastRotateBox
+    .getElementsByClassName("recipe-back")[0]
+    .getElementsByClassName("recipe-back-text")[0]; // sciagam ostatnie okno tekstowe
+  lastRotateBox.classList.toggle("rotating", false); // forsuje odwrocenie zdjecia
+  hideTextWindow(lastRotateBox, lastTextBox); // chowam okno tekstowe
+  setTimeout(function() {
+    setIndexToZero(thisRecipe);
+  }, 500);
 }
 
+function setIndexToZero(thisRecipe) {
+  thisRecipe.style.zIndex = 0;
+}
+
+function setIndexToOne(thisRecipe) {
+  thisRecipe.style.zIndex = 1;
+}
+
+var openedRecipeID = null;
+
 function changeVisibilityRecipe(clickedID) {
-  console.log(clickedID);
-  giveZIndex(clickedID);
   // funkcja ukrywajaca lub odkrywajaca przepis w zaleznosci od stanu
+  console.log(clickedID);
+  var thisRecipe = document.getElementById(clickedID);
   var rotateBox = document
     .getElementById(clickedID)
     .getElementsByClassName("recipe-inner")[0]; // sciagam box
@@ -33,14 +43,22 @@ function changeVisibilityRecipe(clickedID) {
     .getElementsByClassName("recipe-back-text")[0]; // sciagam okno tekstowe
 
   if (!rotateBox.classList.contains("rotating")) {
-    // jesli przepis nie jest widoczny
-    closeRecipes(); // to chowam wszystkie inne przepisy
+    // jesli przepis nie jest widoczny:
+    if (openedRecipeID !== null) closeLastRecipe(); // jezeli poprzedni przepis otwarty to zamykam go
     rotateBox.classList.add("rotating"); // odwracam wybrane zdjecie
     unhideTextWindow(rotateBox, textBox); // pokazuje wybrany przepis
+    openedRecipeID = clickedID; // istnieje otwarty przepis wiec go zapisuje
+    setTimeout(function() {
+      setIndexToOne(thisRecipe);
+    }, 500);
   } else {
-    // jezeli przepis jest juz widoczny
+    // jezeli przepis jest juz widoczny:
     rotateBox.classList.remove("rotating"); // chowam wybrane zdjecie
     hideTextWindow(rotateBox, textBox); // chowam wybrany przepis
+    openedRecipeID = null; // brak otwartych przepisów
+    setTimeout(function() {
+      setIndexToZero(thisRecipe);
+    }, 500);
   }
 }
 
@@ -63,65 +81,65 @@ function giveZIndex(id) {
   document.getElementById(id).style.zIndex = index;
 }
 
-const addForm = document.forms["addForm"];
 var addedId = 3;
 
-addForm.addEventListener("submit", function(e) {
+document.getElementById("addForm").addEventListener("submit", function(e) {
   e.preventDefault();
+  // const line = document.createElement("hr");
+  // line.classList.add("line");
+  // document.getElementById("freerecip").appendChild(line);
   //loading values
   const descVal = document.getElementById("rdescription").value;
-  //create elements
-  const section = document.createElement("section");
-  section.classList.add("recipe");
-  section.setAttribute("id", addedId.toString());
 
-  const figure = document.createElement("figure");
-  figure.classList.add("recipe-inner");
+  //creating elements
+  const container = document.createElement("section");
+  container.classList.add("recipe");
+  addedId++;
+  container.id = addedId;
 
-  const recfront = document.createElement("div");
-  recfront.classList.add("recipe-front");
+  const inner = document.createElement("figure");
+  inner.classList.add("recipe-inner");
+  container.appendChild(inner);
+
+  const front = document.createElement("div");
+  front.classList.add("recipe-front");
   const img1 = document.createElement("img");
   img1.src = window.URL.createObjectURL(
     document.getElementById("rphoto0").files[0]
   );
-  recfront.appendChild(img1);
+  inner.appendChild(front);
+  front.appendChild(img1);
 
-  const recback = document.createElement("div");
-  recback.classList.add("recipe-back");
+  const back = document.createElement("div");
+  back.classList.add("recipe-back");
   const img2 = document.createElement("img");
   img2.src = window.URL.createObjectURL(
     document.getElementById("rphoto1").files[0]
   );
-  recback.appendChild(img2);
+  back.appendChild(img2);
+  inner.appendChild(back);
+  const backtext = document.createElement("div");
+  backtext.classList.add("recipe-back-text");
+  const description = document.createElement("p");
+  description.textContent = descVal;
+  backtext.appendChild(description);
+  back.appendChild(backtext);
 
-  const recbacktxt = document.createElement("div");
-  recbacktxt.classList.add("recipe-back-text");
-  const desc = document.createElement("p");
-  desc.textContent = descVal;
-  recbacktxt.appendChild(desc);
-  recback.appendChild(recbacktxt);
+  document.getElementById("freerecip").appendChild(container);
 
-  const del = document.createElement("button");
-
-  delete button;
-  del.textContent = "Delete";
-  del.classList.add("delete-button");
-  section.appendChild(del);
-  figure.appendChild(recfront);
-  figure.appendChild(recback);
-  section.appendChild(figure);
-  del.addEventListener("click", function() {
-    document.getElementById("freerecip").removeChild(section);
+  container.addEventListener("click", function() {
+    changeVisibilityRecipe(container.id);
   });
-  //appending
-  document.getElementById("freerecip").appendChild(section);
-  //tutej
-  console.log(section.id);
-  section.addEventListener("click", changeVisibilityRecipe(addedId));
+  const delBut = document.createElement("button");
+  delBut.textContent = "Delete";
+  delBut.classList.add("delete-button");
+  backtext.appendChild(delBut);
+  delBut.addEventListener("click", function() {
+    openedRecipeID = null;
+    document.getElementById("freerecip").removeChild(container);
+  });
 
   clearInput(document.getElementsByTagName("input"));
-  //section.addEventListener("click", changeVisibilityRecipe(this.id));
-  addedId++;
 });
 
 function clearInput(elements) {
