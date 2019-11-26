@@ -282,27 +282,15 @@ footer p {
     display: none;
   }
 
-  .recipes {
+  .recipe-box {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  figure {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .recipes img {
-    width: 100%;
-    height: 200px;
-  }
-  .recipes figcaption {
-    border: none;
   }
 
   .author {
     grid-template-columns: 1fr 2fr;
   }
   #always-visible-line {
+    margin-top: 50px;
     display: block;
     width: 80%;
   }
@@ -320,8 +308,8 @@ footer p {
     color: rgb(85, 68, 71);
   }
 }
-@media screen and (min-width: 1024px) {
-  .recipes img {
-    height: 480px;
+@media screen and (min-width: 768px) {
+  .recipe {
+    height: 400px;
   }
 }

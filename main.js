@@ -64,7 +64,7 @@ function giveZIndex(id) {
 }
 
 const addForm = document.forms["addForm"];
-addedId = 3;
+var addedId = 3;
 
 addForm.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -73,7 +73,7 @@ addForm.addEventListener("submit", function(e) {
   //create elements
   const section = document.createElement("section");
   section.classList.add("recipe");
-  section.id = addedId;
+  section.setAttribute("id", addedId.toString());
 
   const figure = document.createElement("figure");
   figure.classList.add("recipe-inner");
@@ -116,7 +116,8 @@ addForm.addEventListener("submit", function(e) {
   //appending
   document.getElementById("freerecip").appendChild(section);
   //tutej
-  section.onclick = changeVisibilityRecipe(addedId);
+  console.log(section.id);
+  section.addEventListener("click", changeVisibilityRecipe(addedId));
 
   clearInput(document.getElementsByTagName("input"));
   //section.addEventListener("click", changeVisibilityRecipe(this.id));
